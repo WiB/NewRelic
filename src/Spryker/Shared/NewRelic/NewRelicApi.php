@@ -21,7 +21,7 @@ class NewRelicApi implements NewRelicApiInterface
 {
 
     const NEWRELIC_DEPLOYMENT_API_URL = 'https://api.newrelic.com/deployments.xml';
-    const STATUS_CODE_OK = 200;
+    const STATUS_CODE_CREATED = 201;
 
     /**
      * @var bool
@@ -322,7 +322,7 @@ class NewRelicApi implements NewRelicApiInterface
 
         $response = $this->createRecordDeploymentRequest($params);
 
-        if ($response->getStatusCode() !== static::STATUS_CODE_OK) {
+        if ($response->getStatusCode() !== static::STATUS_CODE_CREATED) {
             throw new RecordDeploymentException(sprintf(
                 'Record deployment to New Relic request failed with code %d. %s',
                 $response->getStatusCode(),
